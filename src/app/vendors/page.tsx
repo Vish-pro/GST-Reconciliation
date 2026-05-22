@@ -1,8 +1,6 @@
 import {
-  Send,
   MessageSquare,
   Mail,
-  Star,
   Search,
   Filter
 } from "lucide-react";
