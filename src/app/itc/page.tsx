@@ -1,9 +1,6 @@
 import {
-  ShieldAlert,
   Clock,
-  Ban,
-  IndianRupee,
-  CalendarRange
+  Ban
 } from "lucide-react";
 
 export default function ITCOptimization() {
