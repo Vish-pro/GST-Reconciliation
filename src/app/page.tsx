@@ -44,11 +44,26 @@ export default function Dashboard() {
   ];
 
   const branchData = [
-    { state: "Maharashtra", gstin: "27AADCB2230M1Z2", health: 96, mismatches: 12, itc: "₹ 1.2 Cr", status: "Healthy" },
-    { state: "Karnataka", gstin: "29AADCB2230M1Z4", health: 88, mismatches: 45, itc: "₹ 85 L", status: "Warning" },
-    { state: "Delhi", gstin: "07AADCB2230M1Z8", health: 94, mismatches: 18, itc: "₹ 92 L", status: "Healthy" },
-    { state: "Tamil Nadu", gstin: "33AADCB2230M1Z6", health: 72, mismatches: 67, itc: "₹ 45 L", status: "Critical" },
+    { state: "Maharashtra", gstin: "27AADCB2230M1Z2", health: 96, mismatches: 12, itc: "₹ 1.2 Cr", status: "Healthy" as const },
+    { state: "Karnataka", gstin: "29AADCB2230M1Z4", health: 88, mismatches: 45, itc: "₹ 85 L", status: "Warning" as const },
+    { state: "Delhi", gstin: "07AADCB2230M1Z8", health: 94, mismatches: 18, itc: "₹ 92 L", status: "Healthy" as const },
+    { state: "Tamil Nadu", gstin: "33AADCB2230M1Z6", health: 72, mismatches: 67, itc: "₹ 45 L", status: "Critical" as const },
   ];
+
+  const statusConfig = {
+    Healthy: {
+      className: "bg-green-50 text-green-700 border border-green-200",
+      Icon: CheckCircle2
+    },
+    Warning: {
+      className: "bg-amber-50 text-amber-700 border border-amber-200",
+      Icon: AlertTriangle
+    },
+    Critical: {
+      className: "bg-red-50 text-red-700 border border-red-200",
+      Icon: FileWarning
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -122,13 +137,11 @@ export default function Dashboard() {
                   <td className="px-6 py-4 text-slate-700">{branch.mismatches} invoices</td>
                   <td className="px-6 py-4 font-medium text-slate-900">{branch.itc}</td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium
-                      ${branch.status === 'Healthy' ? 'bg-green-50 text-green-700 border border-green-200' :
-                        branch.status === 'Warning' ? 'bg-amber-50 text-amber-700 border border-amber-200' :
-                        'bg-red-50 text-red-700 border border-red-200'}`}>
-                      {branch.status === 'Healthy' && <CheckCircle2 size={12} />}
-                      {branch.status === 'Warning' && <AlertTriangle size={12} />}
-                      {branch.status === 'Critical' && <FileWarning size={12} />}
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${statusConfig[branch.status].className}`}>
+                      {(() => {
+                        const Icon = statusConfig[branch.status].Icon;
+                        return <Icon size={12} />;
+                      })()}
                       {branch.status}
                     </span>
                   </td>
