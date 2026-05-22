@@ -7,6 +7,12 @@ import {
   Filter
 } from "lucide-react";
 
+const scoreStyles: Record<string, string> = {
+  A: "bg-green-100 text-green-800",
+  B: "bg-blue-100 text-blue-800",
+  C: "bg-red-100 text-red-800",
+};
+
 export default function VendorChasing() {
   const vendors = [
     { id: 1, name: "Reliance Retail Ltd", missing: 12, amount: "₹ 45,000", score: "A", contact: "9876543210", email: "finance@reliance.com", lastContact: "2 days ago" },
@@ -77,10 +83,7 @@ export default function VendorChasing() {
                   <td className="px-6 py-4 text-red-600 font-bold">{vendor.missing}</td>
                   <td className="px-6 py-4 font-medium text-slate-900">{vendor.amount}</td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-bold
-                      ${vendor.score === 'A' ? 'bg-green-100 text-green-800' :
-                        vendor.score === 'B' ? 'bg-blue-100 text-blue-800' :
-                        'bg-red-100 text-red-800'}`}>
+                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-bold ${scoreStyles[vendor.score] || 'bg-red-100 text-red-800'}`}>
                       {vendor.score} Rating
                     </span>
                   </td>
