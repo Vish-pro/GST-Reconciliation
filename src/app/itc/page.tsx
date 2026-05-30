@@ -2,7 +2,6 @@ import {
   ShieldAlert,
   Clock,
   Ban,
-  IndianRupee,
   CalendarRange
 } from "lucide-react";
 
