@@ -7,41 +7,41 @@ import {
   Filter
 } from "lucide-react";
 
+const categories = [
+  { name: "Fully Matched", count: 842, amount: "₹ 2.4 Cr", icon: CheckCircle2, color: "text-green-600", bg: "bg-green-50 border-green-200" },
+  { name: "Partial Match", count: 56, amount: "₹ 12.5 L", icon: HelpCircle, color: "text-amber-600", bg: "bg-amber-50 border-amber-200" },
+  { name: "Missing in Portal (GSTR-2B)", count: 84, amount: "₹ 4.2 L", icon: XCircle, color: "text-red-600", bg: "bg-red-50 border-red-200" },
+  { name: "Missing in Books", count: 12, amount: "₹ 1.8 L", icon: AlertCircle, color: "text-blue-600", bg: "bg-blue-50 border-blue-200" },
+];
+
+const partialMatches = [
+  {
+    vendor: "TechCorp Solutions",
+    portalInv: "INV-2024-001",
+    booksInv: "INV2024001",
+    dateDiff: "0 days",
+    amountDiff: "₹ 0.50",
+    reason: "Rounding / Prefix Mismatch"
+  },
+  {
+    vendor: "Sharma Logistics",
+    portalInv: "SL/542/24",
+    booksInv: "SL/542/24",
+    dateDiff: "2 days",
+    amountDiff: "₹ 0.00",
+    reason: "Date Variance (Within Tolerance)"
+  },
+  {
+    vendor: "Apex Office Supplies",
+    portalInv: "AOS-992",
+    booksInv: "AOS992",
+    dateDiff: "0 days",
+    amountDiff: "₹ -5.00",
+    reason: "Value Variance (Within Tolerance)"
+  }
+];
+
 export default function ReconciliationEngine() {
-  const categories = [
-    { name: "Fully Matched", count: 842, amount: "₹ 2.4 Cr", icon: CheckCircle2, color: "text-green-600", bg: "bg-green-50 border-green-200" },
-    { name: "Partial Match", count: 56, amount: "₹ 12.5 L", icon: HelpCircle, color: "text-amber-600", bg: "bg-amber-50 border-amber-200" },
-    { name: "Missing in Portal (GSTR-2B)", count: 84, amount: "₹ 4.2 L", icon: XCircle, color: "text-red-600", bg: "bg-red-50 border-red-200" },
-    { name: "Missing in Books", count: 12, amount: "₹ 1.8 L", icon: AlertCircle, color: "text-blue-600", bg: "bg-blue-50 border-blue-200" },
-  ];
-
-  const partialMatches = [
-    {
-      vendor: "TechCorp Solutions",
-      portalInv: "INV-2024-001",
-      booksInv: "INV2024001",
-      dateDiff: "0 days",
-      amountDiff: "₹ 0.50",
-      reason: "Rounding / Prefix Mismatch"
-    },
-    {
-      vendor: "Sharma Logistics",
-      portalInv: "SL/542/24",
-      booksInv: "SL/542/24",
-      dateDiff: "2 days",
-      amountDiff: "₹ 0.00",
-      reason: "Date Variance (Within Tolerance)"
-    },
-    {
-      vendor: "Apex Office Supplies",
-      portalInv: "AOS-992",
-      booksInv: "AOS992",
-      dateDiff: "0 days",
-      amountDiff: "₹ -5.00",
-      reason: "Value Variance (Within Tolerance)"
-    }
-  ];
-
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-end">
