@@ -7,6 +7,12 @@ import {
   MapPin
 } from "lucide-react";
 
+function getHealthBarColor(health: number): string {
+  if (health > 90) return 'bg-green-500';
+  if (health > 80) return 'bg-amber-500';
+  return 'bg-red-500';
+}
+
 export default function Dashboard() {
   const summaryCards = [
     {
@@ -112,7 +118,7 @@ export default function Dashboard() {
                     <div className="flex items-center gap-2">
                       <div className="w-16 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div
-                          className={`h-full ${branch.health > 90 ? 'bg-green-500' : branch.health > 80 ? 'bg-amber-500' : 'bg-red-500'}`}
+                          className={`h-full ${getHealthBarColor(branch.health)}`}
                           style={{ width: `${branch.health}%` }}
                         />
                       </div>
